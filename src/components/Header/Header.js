@@ -2,10 +2,33 @@ import { BsFillCartFill, BsFillSearchHeartFill, BsFillInfoCircleFill } from "rea
 import { AiFillHome, AiFillMail, AiOutlineMenu } from "react-icons/ai";
 import market_mate_logo from "./image/market_mate_logo.png";
 import { GiCarrot, GiFrozenOrb, GiFruitBowl, GiMeat, GiPaperBagOpen, GiSlicedBread } from "react-icons/gi";
+import Cart_pop from "../Cart_pop";
 import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect,useCallback } from 'react';
 
 function Header() {
-  return (
+  const [isCartOpen, setCartOpen] = useState(false);
+  const cartRef = useRef(null);
+
+  const handleCartClick = () => {
+    setCartOpen(!isCartOpen);
+  };
+
+  const handleClickOutside = useCallback((event) => {
+    if (cartRef.current && !cartRef.current.contains(event.target)) {
+      setCartOpen(false);
+    }
+  }, [setCartOpen]);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [handleClickOutside]);
+
+  return(
     <header aria-label="Site Header" className=" bg-white w-100">
       <div>
         <div className="flex h-20 items-center justify-between">
@@ -100,10 +123,14 @@ function Header() {
               </Link>
 
               <div className="hidden sm:flex">
-              <Link to='Cart_page' className="px-2 py-2.5 text-green-500"
-                  href="/">
+              <Link to='' className="px-2 py-2.5 text-green-500"
+                  href="/" onClick={handleCartClick} >
+                  
                   <BsFillCartFill className="w-6 h-6" />
-                  </Link>
+                 </Link>
+                 {isCartOpen && <Cart_pop ref={cartRef} />}
+
+
               </div>
             </div>
 
@@ -112,10 +139,13 @@ function Header() {
                 <AiOutlineMenu/>
               </button>
             </div>
+
+            
           </div>
         </div>
       </div>
     </header>
+    
   );
 }
 

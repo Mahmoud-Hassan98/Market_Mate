@@ -8,42 +8,42 @@ const Frozen = () => {
   const { data } = useContext(ProductContext);
   
   const frozen = data.filter((product)=> product.category === "frozen");
-
   return (
     <>
       <Jumbotron />
-      <div className="md:container md:mx-auto">
-        <div className="flex flex-wrap justify-center -mx-2">
-          {frozen.map((d, i) => (
-           <div
-           className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2 mb-4"
-           key={i}
-         >
-           <div className="bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 p-2 h-full">
-             <img
-               className="rounded-t-md w-full h-40 object-cover object-center"
-               src={d.image}
-               alt=""
-             />
-             <div className="p-2 h-full">
-               <h5 className="mb-1 text-base font-semibold tracking-tight text-gray-900 dark:text-black">
-                 {d.name}
-               </h5>
-               <p className="mb-2 text-xs text-gray-700 dark:text-gray-400">
-                 {d.description}
-               </p>
-               <p className="mb-3 font-normal text-xs text-gray-700 dark:text-gray-400">
-                 ${d.price}
-               </p>
-               <a
-                 href="#"
-                 className="inline-block px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-               >
-                 Add to Cart
-               </a>
-             </div>
-           </div>
-         </div>
+      <div className="container mx-auto px-12">
+        <div className="flex flex-wrap justify-center -mx-6">
+          {frozen .map((d, i) => (
+            <div
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-6 mb-8"
+              key={i}
+            >
+              <div className="bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-700 p-4 h-full">
+                <img
+                  className="rounded-t-md w-full h-40 object-cover object-center"
+                  src={d.image}
+                  alt=""
+                />
+                <div className="p-4 h-full">
+                  <h5 className="mb-2 text-lg font-semibold text-gray-900 dark:text-black">
+                    {d.name}
+                  </h5>
+                  <p className="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                    {d.description}
+                  </p>
+                  <p className="mb-3 font-medium text-lg text-gray-700 dark:text-gray-400">
+                    ${d.price}
+                  </p>
+                  <button
+                    // onClick={() => handleAddToCart(d)}
+                    className="block w-full py-3 text-lg font-semibold text-center text-white bg-yellow-400 rounded-md hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-700"
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

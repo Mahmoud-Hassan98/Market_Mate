@@ -8,12 +8,7 @@ import  { useEffect} from 'react'
 import { useContext } from 'react';
 import { CartContext, ProductContext } from "../App";
 import { Link , useNavigate } from 'react-router-dom';
-
-
-
-
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {
     MDBBtn,
